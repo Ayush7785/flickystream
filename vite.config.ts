@@ -105,7 +105,7 @@ export default defineConfig(({ mode }) => ({
         name: "FlickyStream", // Updated to FlickyStream
         short_name: "FlickyStream",
         description: "Stream movies and TV shows online",
-        theme_color: "#00f0ff", // Neon blue
+        theme_color: "#00ffff", // Neon blue
         background_color: "#1a1a1a", // Darker background to complement neon blue
         display: "fullscreen",
         display_override: ["fullscreen"],
@@ -363,7 +363,7 @@ export default defineConfig(({ mode }) => ({
         },
       },
       devOptions: {
-        enabled: mode === "development", // Disable PWA dev options in production
+        enabled: mode === "production", // Disable PWA dev options in production
         type: "module",
         navigateFallback: "index.html",
       },
