@@ -6,21 +6,16 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { VitePWA } from "vite-plugin-pwa";
 import pkg from "./package.json";
+import type { RuntimeCaching } from "workbox-build";
 
 declare const self: ServiceWorkerGlobalScope;
 
-// Define types for response data
 interface TMDBResponse {
-  error?: {
-    message: string;
-  };
+  error?: { message: string };
   data: unknown;
 }
 
-// Cache version based on package version
 const CACHE_VERSION = `v${pkg.version}`;
-
-// Cache names with versioning
 const CACHE_NAMES = {
   pages: `pages-cache-${CACHE_VERSION}`,
   static: `static-assets-${CACHE_VERSION}`,
@@ -31,55 +26,22 @@ const CACHE_NAMES = {
   googleApis: `google-apis-${CACHE_VERSION}`,
 };
 
-// Import RuntimeCaching type from the workbox-build module
-import type { RuntimeCaching } from "workbox-build";
-
 export default defineConfig(({ mode }) => ({
-  base: "/", // Ensure correct base path for Vercel
+  base: "/",
   server: {
     host: "::",
     port: 8080,
-    mimeTypes: {
-      ".js": "application/javascript",
-      ".json": "application/json",
-    },
   },
   build: {
-    minify: "esbuild", // Ensure minification for production
-    sourcemap: mode === "production" ? false : true, // Disable sourcemaps in production
+    minify: "esbuild",
+    sourcemap: mode !== "production",
     chunkSizeWarningLimit: 1000,
-    roll中年Options: {
+    rollupOptions: {
       output: {
-        // Manual chunks for optimized bundle size
         manualChunks: {
           "react-vendor": ["react", "react-dom", "react-router-dom"],
           "ui-components": [
-            "@radix-ui/react-accordion",
-            "@radix-ui/react-alert-dialog",
-            "@radix-ui/react-aspect-ratio",
-            "@radix-ui/react-avatar",
-            "@radix-ui/react-checkbox",
-            "@radix-ui/react-collapsible",
-            "@radix-ui/react-context-menu",
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-dropdown-menu",
-            "@radix-ui/react-hover-card",
-            "@radix-ui/react-label",
-            "@radix-ui/react-menubar",
-            "@radix-ui/react-navigation-menu",
-            "@radix-ui/react-popover",
-            "@radix-ui/react-progress",
-            "@radix-ui/react-radio-group",
-            "@radix-ui/react-scroll-area",
-            "@radix-ui/react-select",
-            "@radix-ui/react-separator",
-            "@radix-ui/react-slider",
-            "@radix-ui/react-slot",
-            "@radix-ui/react-switch",
-            "@radix-ui/react-tabs",
-            "@radix-ui/react-toast",
-            "@radix-ui/react-toggle",
-            "@radix-ui/react-toggle-group",
+            "@radix-ui/react-*"
           ],
           "firebase-auth": ["firebase/auth", "@firebase/auth"],
           "data-visualization": ["recharts"],
@@ -90,7 +52,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === "development" && componentTagger(), // Only include in dev mode
+    mode === "development" && componentTagger(),
     VitePWA({
       strategies: "generateSW",
       registerType: "autoUpdate",
@@ -102,67 +64,27 @@ export default defineConfig(({ mode }) => ({
         "offline.html",
       ],
       manifest: {
-        name: "FlickyStream", // Updated to FlickyStream
+        name: "FlickyStream",
         short_name: "FlickyStream",
         description: "Stream movies and TV shows online",
-        theme_color: "#00ffff", // Neon blue
-        background_color: "#1a1a1a", // Darker background to complement neon blue
+        theme_color: "#00ffff",
+        background_color: "#1a1a1a",
         display: "fullscreen",
         display_override: ["fullscreen"],
         scope: "/",
         start_url: "/",
         orientation: "any",
         icons: [
-          {
-            src: "icons/icon-48x48.png",
-            sizes: "48x48",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-72x72.png",
-            sizes: "72x72",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-96x96.png",
-            sizes: "96x96",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-128x128.png",
-            sizes: "128x128",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-144x144.png",
-            sizes: "144x144",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-152x152.png",
-            sizes: "152x152",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-256x256.png",
-            sizes: "256x256",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-384x384.png",
-            sizes: "384x384",
-            type: "image/png",
-          },
-          {
-            src: "icons/icon-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
+          { src: "icons/icon-48x48.png", sizes: "48x48", type: "image/png" },
+          { src: "icons/icon-72x72.png", sizes: "72x72", type: "image/png" },
+          { src: "icons/icon-96x96.png", sizes: "96x96", type: "image/png" },
+          { src: "icons/icon-128x128.png", sizes: "128x128", type: "image/png" },
+          { src: "icons/icon-144x144.png", sizes: "144x144", type: "image/png" },
+          { src: "icons/icon-152x152.png", sizes: "152x152", type: "image/png" },
+          { src: "icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+          { src: "icons/icon-256x256.png", sizes: "256x256", type: "image/png" },
+          { src: "icons/icon-384x384.png", sizes: "384x384", type: "image/png" },
+          { src: "icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
         ],
         screenshots: [
           {
@@ -176,51 +98,26 @@ export default defineConfig(({ mode }) => ({
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json,woff2,ttf}"],
         maximumFileSizeToCacheInBytes: 5000000,
         runtimeCaching: [
-          // SPA Navigation Routes
           {
-            urlPattern: ({ request }: { request: Request }) => request.mode === "navigate",
+            urlPattern: ({ request }) => request.mode === "navigate",
             handler: "NetworkFirst",
             options: {
               cacheName: CACHE_NAMES.pages,
               networkTimeoutSeconds: 3,
               plugins: [
                 {
-                  requestWillFetch: async ({ event }: { event: FetchEvent & { preloadResponse?: Promise<Response> } }) => {
-                    try {
-                      if (event.preloadResponse) {
-                        const preloadResponse = await event.preloadResponse;
-                        if (preloadResponse) {
-                          return preloadResponse;
-                        }
-                      }
-                      return event.request;
-                    } catch (error) {
-                      console.error("Error handling preload response:", error);
-                      return event.request;
-                    }
+                  requestWillFetch: async ({ event }) => {
+                    const preload = await event?.preloadResponse;
+                    return preload || event.request;
                   },
-                  handlerDidError: async ({ request }: { request: Request }) => {
-                    try {
-                      const cache = await self.caches.open(CACHE_NAMES.pages);
-                      const response = await cache.match("/offline.html");
-                      if (response) return response;
-
-                      const offlineResponse = await fetch("/offline.html");
-                      if (offlineResponse.ok) {
-                        await cache.put("/offline.html", offlineResponse.clone());
-                        return offlineResponse;
-                      }
-                      return undefined;
-                    } catch (error) {
-                      console.error("Error serving offline page:", error);
-                      return undefined;
-                    }
+                  handlerDidError: async () => {
+                    const cache = await self.caches.open(CACHE_NAMES.pages);
+                    return cache.match("/offline.html");
                   },
                 },
               ],
             },
           },
-          // Static Assets
           {
             urlPattern: /\.(css|js|woff2|ttf)$/i,
             handler: "CacheFirst",
@@ -228,11 +125,9 @@ export default defineConfig(({ mode }) => ({
               cacheName: CACHE_NAMES.static,
               expiration: {
                 maxEntries: 200,
-                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+                maxAgeSeconds: 30 * 24 * 60 * 60,
               },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
           {
@@ -242,14 +137,12 @@ export default defineConfig(({ mode }) => ({
               cacheName: CACHE_NAMES.images,
               expiration: {
                 maxEntries: 500,
-                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+                maxAgeSeconds: 30 * 24 * 60 * 60,
               },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              cacheableResponse: { statuses: [0, 200] },
               plugins: [
                 {
-                  handlerDidError: async ({ request }: { request: Request }) => {
+                  handlerDidError: async () => {
                     const cache = await self.caches.open(CACHE_NAMES.static);
                     return cache.match("/placeholder.svg");
                   },
@@ -265,21 +158,14 @@ export default defineConfig(({ mode }) => ({
               networkTimeoutSeconds: 3,
               expiration: {
                 maxEntries: 100,
-                maxAgeSeconds: 1 * 24 * 60 * 60,
+                maxAgeSeconds: 86400,
               },
               plugins: [
                 {
-                  cacheWillUpdate: async ({ response }: { response: Response }) => {
-                    if (response && response.status === 200) {
-                      try {
-                        const clonedResponse = response.clone();
-                        const data = (await clonedResponse.json()) as TMDBResponse;
-                        if (data && !data.error) {
-                          return response;
-                        }
-                      } catch (error) {
-                        console.error("Error parsing TMDB response:", error);
-                      }
+                  cacheWillUpdate: async ({ response }) => {
+                    if (response?.status === 200) {
+                      const json = await response.clone().json();
+                      return json?.error ? null : response;
                     }
                     return null;
                   },
@@ -294,14 +180,10 @@ export default defineConfig(({ mode }) => ({
               cacheName: CACHE_NAMES.tmdbImages,
               expiration: {
                 maxEntries: 500,
-                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+                maxAgeSeconds: 30 * 24 * 60 * 60,
               },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-              matchOptions: {
-                ignoreVary: true,
-              },
+              cacheableResponse: { statuses: [0, 200] },
+              matchOptions: { ignoreVary: true },
               plugins: [
                 {
                   handlerDidError: async () => {
@@ -313,19 +195,14 @@ export default defineConfig(({ mode }) => ({
             },
           },
           {
-            urlPattern: ({ url }: { url: URL }) => {
-              return (
-                url.hostname.includes("firestore.googleapis.com") ||
-                url.hostname.includes("firebase.googleapis.com") ||
-                url.hostname.includes("firebaseio.com")
-              );
-            },
+            urlPattern: ({ url }) =>
+              url.hostname.includes("firebase") || url.hostname.includes("firebaseio.com"),
             handler: "NetworkOnly",
             options: {
               plugins: [
                 {
                   fetchDidFail: async () => {
-                    console.error("Firebase request failed - network only strategy");
+                    console.error("Firebase request failed.");
                   },
                 },
               ],
@@ -339,11 +216,11 @@ export default defineConfig(({ mode }) => ({
               networkTimeoutSeconds: 3,
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60, // 1 hour
+                maxAgeSeconds: 3600,
               },
               plugins: [
                 {
-                  handlerDidError: async ({ request }: { request: Request }) => {
+                  handlerDidError: async ({ request }) => {
                     console.error("Google API request failed:", request.url);
                     return undefined;
                   },
@@ -351,7 +228,7 @@ export default defineConfig(({ mode }) => ({
               ],
             },
           },
-        ] as RuntimeCaching[],
+        ],
         cleanupOutdatedCaches: true,
         skipWaiting: true,
         clientsClaim: true,
@@ -363,7 +240,7 @@ export default defineConfig(({ mode }) => ({
         },
       },
       devOptions: {
-        enabled: mode === "production", // Disable PWA dev options in production
+        enabled: mode !== "production",
         type: "module",
         navigateFallback: "index.html",
       },
