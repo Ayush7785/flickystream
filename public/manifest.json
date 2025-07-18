@@ -1,17 +1,16 @@
-
 {
-  "name": "Let's Stream V2.0",
-  "short_name": "Let's Stream",
-  "description": "Watch movies and TV shows online",
+  "name": "FlickyStream",
+  "short_name": "FlickyStream",
+  "description": "Watch movies and TV shows online with a neon stream vibe",
   "start_url": "/",
   "id": "/",
   "display": "fullscreen",
   "display_override": ["window-controls-overlay", "fullscreen", "browser", "standalone"],
   "orientation": "any",
-  "background_color": "#0f0f0f",
-  "theme_color": "#3b82f6",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00ffff",
   "icons": [
-     {
+    {
       "src": "icons/icon-48x48.png",
       "sizes": "48x48",
       "type": "image/png"
@@ -64,9 +63,9 @@
   ],
   "shortcuts": [
     {
-      "name": "Let's Stream",
-      "short_name": "Let's Stream",
-      "description": "Watch movies and TV shows online",
+      "name": "FlickyStream",
+      "short_name": "Stream",
+      "description": "Watch your favorite content",
       "url": "/",
       "icons": [{ "src": "icons/icon-192x192.png", "sizes": "192x192" }]
     }
