@@ -1,14 +1,48 @@
-@keyframes flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% {
-    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #f09, 0 0 80px #f09, 0 0 90px #f09, 0 0 100px #f09, 0 0 150px #f09;
-  }
-  20%, 24%, 55% { text-shadow: none; }
-}
-
-.flickerL {
-  animation: flicker 1.5s infinite alternate;
+/* Logo.module.css */
+.flickerF {
+  animation: flickerF 1.5s infinite alternate;
 }
 
 .flickerS {
-  animation: flicker 2s infinite alternate;
+  animation: flickerS 1.7s infinite alternate;
+}
+
+@keyframes flickerF {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #ff00ff,
+      0 0 80px #ff00ff,
+      0 0 90px #ff00ff,
+      0 0 100px #ff00ff,
+      0 0 150px #ff00ff;
+    opacity: 1;
+  }
+  
+  20%, 24%, 55% {
+    text-shadow: none;
+    opacity: 0.6;
+  }
+}
+
+@keyframes flickerS {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #00ffff,
+      0 0 80px #00ffff,
+      0 0 90px #00ffff,
+      0 0 100px #00ffff,
+      0 0 150px #00ffff;
+    opacity: 1;
+  }
+  
+  20%, 24%, 55% {
+    text-shadow: none;
+    opacity: 0.6;
+  }
 }
