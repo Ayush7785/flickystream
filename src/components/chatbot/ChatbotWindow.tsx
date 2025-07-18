@@ -248,7 +248,7 @@ const ChatbotWindow: React.FC = () => {
         {messages.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center text-center space-y-4 px-2">
             <div className="space-y-2">
-              <p className="text-lg font-semibold text-primary">Welcome to CineMate! 🎬</p>
+              <p className="text-lg font-semibold text-primary">Welcome to FlickyStream Ai Bot! 🎬</p>
               <p className="text-sm text-muted-foreground">I can recommend movies and TV shows tailored to your tastes, or help you discover something new.</p>
             </div>
             
