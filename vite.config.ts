@@ -129,7 +129,7 @@ export default defineConfig(({ mode }) => ({
         name: "FlickyStream",
         short_name: "FlickyStream",
         description: "Watch movies and TV shows online",
-        theme_color: '#00ffff',
+        theme_color: '#3b82f6',
         background_color: '#0f0f0f',
         display: 'standalone',
         display_override: ['fullscreen', 'minimal-ui', 'browser', 'standalone'],
