@@ -205,7 +205,7 @@ const ChatbotWindow: React.FC = () => {
       <CardHeader className="pb-2 border-b border-border/10">
         <div className="flex justify-between items-center">
           <CardTitle className="text-xl font-semibold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            CineMate
+            Flicky S Mate
           </CardTitle>
           <div className="flex space-x-1">
             {isMobile && (
