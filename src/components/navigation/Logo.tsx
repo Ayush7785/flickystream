@@ -10,7 +10,7 @@ const Logo: React.FC = () => {
 
   return (
     <img
-      src="https://flicky.host/flogo.png"
+      src="https://api.flickystream.co/flogo.png"
       alt="FlickyStream Logo"
       title="FlickyStream"
       onClick={() => navigate('/')}
