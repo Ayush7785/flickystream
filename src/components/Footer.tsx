@@ -110,17 +110,19 @@ const FloatingMobileFooter: React.FC = () => {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: #0a0a0a;
-    border: 2px solid #ff1a75;
+    background: rgba(0, 0, 0, 0.6); /* translucent black */
+    backdrop-filter: blur(10px); /* glass blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* soft border */
     border-radius: 20px;
-    /* Removed glow effect */
-    box-shadow: none;
+    box-shadow: none; /* removed glow */
     display: flex;
     gap: 24px;
     padding: 12px 20px;
     z-index: 99999;
     font-family: 'Audiowide', cursive;
   }
+
   .footer-btn {
     color: white;
     display: flex;
@@ -131,20 +133,24 @@ const FloatingMobileFooter: React.FC = () => {
     position: relative;
     transition: transform 0.2s ease;
   }
+
   .footer-btn i {
     font-size: 18px;
     margin-bottom: 4px;
   }
+
   .footer-btn:hover {
     transform: scale(1.15);
   }
+
   .footer-dropdown {
     position: absolute;
     bottom: 45px;
-    background: #111;
-    border: 1px solid #ff1a75;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    /* Removed glow effect */
     box-shadow: none;
     display: flex;
     flex-direction: column;
@@ -152,6 +158,7 @@ const FloatingMobileFooter: React.FC = () => {
     min-width: 130px;
     z-index: 100000;
   }
+
   .footer-dropdown div {
     color: white;
     padding: 6px 10px;
@@ -163,15 +170,18 @@ const FloatingMobileFooter: React.FC = () => {
     gap: 8px;
     transition: background 0.2s ease;
   }
+
   .footer-dropdown div:hover {
-    background: #ff1a75;
+    background: rgba(255, 26, 117, 0.4); /* semi-transparent pink hover */
   }
+
   .footer-dropdown div:first-child {
     justify-content: center;
     font-weight: bold;
-    border-bottom: 1px solid #ff1a75;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 6px;
   }
+
   @media (min-width: 768px) {
     .floating-footer {
       display: none !important;
