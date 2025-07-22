@@ -38,7 +38,89 @@
       }
     </script>
   </head>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  // Create the Telegram message container
+  const telegramMessage = document.createElement("div");
+  telegramMessage.id = "telegramMessage";
+  telegramMessage.style.position = "fixed";
+  telegramMessage.style.top = "50%"; // Center vertically
+  telegramMessage.style.left = "50%"; // Center horizontally
+  telegramMessage.style.transform = "translate(-50%, -50%)";
+  telegramMessage.style.backgroundColor = "#0088cc";
+  telegramMessage.style.color = "white";
+  telegramMessage.style.padding = "20px";
+  telegramMessage.style.borderRadius = "15px";
+  telegramMessage.style.display = "flex";
+  telegramMessage.style.flexDirection = "column";
+  telegramMessage.style.alignItems = "center";
+  telegramMessage.style.justifyContent = "center";
+  telegramMessage.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.3)";
+  telegramMessage.style.opacity = "0";
+  telegramMessage.style.transition = "opacity 0.5s ease";
+  telegramMessage.style.zIndex = "1000";
+  telegramMessage.style.textAlign = "center";
+  telegramMessage.style.width = "90%"; // Responsive width
+  telegramMessage.style.maxWidth = "400px"; // Maximum width for larger screens
 
+  // Add the Telegram icon
+  const telegramIcon = document.createElement("img");
+  telegramIcon.src = "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg";
+  telegramIcon.alt = "Telegram Icon";
+  telegramIcon.style.width = "60px";
+  telegramIcon.style.height = "60px";
+  telegramIcon.style.borderRadius = "50%";
+  telegramIcon.style.marginBottom = "10px";
+  telegramIcon.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+
+  // Add the link
+  const telegramLink = document.createElement("a");
+  telegramLink.href = "https://telegram.me/byte_bkc";
+  telegramLink.target = "_blank";
+  telegramLink.style.color = "white";
+  telegramLink.style.textDecoration = "none";
+  telegramLink.style.fontSize = "18px";
+  telegramLink.style.fontWeight = "bold";
+  telegramLink.style.marginBottom = "10px";
+  telegramLink.textContent = "Join us on Telegram";
+
+  // Add the countdown timer
+  const timer = document.createElement("div");
+  timer.id = "countdownTimer";
+  timer.style.color = "white";
+  timer.style.fontSize = "14px";
+  timer.style.marginTop = "10px";
+
+  // Append the icon, link, and timer to the container
+  telegramMessage.appendChild(telegramIcon);
+  telegramMessage.appendChild(telegramLink);
+  telegramMessage.appendChild(timer);
+
+  // Append the container to the body
+  document.body.appendChild(telegramMessage);
+
+  // Show the message with animation
+  setTimeout(() => {
+    telegramMessage.style.opacity = "1";
+  }, 500);
+
+  // Countdown timer logic
+  let timeLeft = 5; // 5 seconds
+  const countdown = setInterval(() => {
+    timer.textContent = `Closing in ${timeLeft} second${timeLeft === 1 ? "" : "s"}...`;
+    timeLeft -= 1;
+    if (timeLeft < 0) {
+      clearInterval(countdown);
+
+      // Hide the message with fade-out animation
+      telegramMessage.style.opacity = "0";
+      setTimeout(() => {
+        telegramMessage.remove();
+      }, 500); // Allow time for the fade-out animation to finish
+    }
+  }, 1000);
+});
+</script>
   <body>
     <div id="root"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
