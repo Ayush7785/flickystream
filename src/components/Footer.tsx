@@ -6,19 +6,20 @@ const FloatingMobileFooter: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const menuItems = [
-    { icon: 'fas fa-home', label: 'Home' },
-    { icon: 'fas fa-film', label: 'Movies' },
-    { icon: 'fas fa-fire', label: 'Trending' },
-    { icon: 'fas fa-tv', label: 'Series' },
+    { icon: 'fas fa-home', label: 'Home', path: '/' },
+    { icon: 'fas fa-film', label: 'Movies', path: '/movie' },
+    { icon: 'fas fa-fire', label: 'Trending', path: '/trending' },
+    { icon: 'fas fa-tv', label: 'Series', path: '/tv' },
     {
       icon: 'fas fa-ellipsis-h',
       label: 'More',
       dropdown: [
         { icon: 'fas fa-times close-drop', label: 'Close', isClose: true },
-        { icon: 'fas fa-dragon', label: 'Anime' },
-        { icon: 'fas fa-broadcast-tower', label: 'LiveTV' },
-        { icon: 'fas fa-heartbeat', label: 'Hentai' },
-        { icon: 'fas fa-mask', label: '18+' },
+        { icon: 'fas fa-dragon', label: 'Anime', path: '/anime' },
+        { icon: 'fas fa-broadcast-tower', label: 'LiveTV', path: '/livetv' },
+        { icon: 'fas fa-heartbeat', label: 'Hentai', path: '/hentai' },
+        { icon: 'fas fa-mask', label: '18+', path: '/18plus' },
+        { icon: 'fas fa-futbol', label: 'Sports', path: '/sports' }, // New Sports item
       ],
     },
   ];
@@ -44,6 +45,11 @@ const FloatingMobileFooter: React.FC = () => {
 
   if (!isMobile) return null;
 
+  // Navigate helper
+  const navigateTo = (path: string) => {
+    window.location.href = path;
+  };
+
   return (
     <>
       {/* External fonts */}
@@ -57,15 +63,15 @@ const FloatingMobileFooter: React.FC = () => {
       />
 
       <div className="floating-footer">
-        {menuItems.map(({ icon, label, dropdown }) => (
+        {menuItems.map(({ icon, label, dropdown, path }) => (
           <div
             key={label}
             className="footer-btn"
             onClick={() => {
               if (dropdown) {
                 setDropdownVisible(!dropdownVisible);
-              } else {
-                alert(`${label} clicked`);
+              } else if (path) {
+                navigateTo(path);
               }
             }}
             ref={label === 'More' ? dropdownRef : undefined}
@@ -81,8 +87,8 @@ const FloatingMobileFooter: React.FC = () => {
                       e.stopPropagation();
                       if (item.isClose) {
                         setDropdownVisible(false);
-                      } else {
-                        alert(`${item.label} clicked`);
+                      } else if (item.path) {
+                        navigateTo(item.path);
                       }
                     }}
                   >
