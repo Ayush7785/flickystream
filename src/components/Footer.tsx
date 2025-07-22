@@ -102,78 +102,83 @@ const FloatingMobileFooter: React.FC = () => {
         ))}
       </div>
 
-      <style>{`
-        .floating-footer {
-          position: fixed;
-          bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: #0a0a0a;
-          border: 2px solid #ff1a75;
-          border-radius: 20px;
-          box-shadow: 0 0 15px #ff1a75, 0 0 30px #ff4d94;
-          display: flex;
-          gap: 24px;
-          padding: 12px 20px;
-          z-index: 99999;
-          font-family: 'Audiowide', cursive;
-        }
-        .footer-btn {
-          color: white;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          cursor: pointer;
-          font-size: 12px;
-          position: relative;
-          transition: transform 0.2s ease;
-        }
-        .footer-btn i {
-          font-size: 18px;
-          margin-bottom: 4px;
-        }
-        .footer-btn:hover {
-          transform: scale(1.15);
-        }
-        .footer-dropdown {
-          position: absolute;
-          bottom: 45px;
-          background: #111;
-          border: 1px solid #ff1a75;
-          border-radius: 10px;
-          box-shadow: 0 0 20px #ff1a75;
-          display: flex;
-          flex-direction: column;
-          padding: 6px;
-          min-width: 130px;
-          z-index: 100000;
-        }
-        .footer-dropdown div {
-          color: white;
-          padding: 6px 10px;
-          border-radius: 6px;
-          cursor: pointer;
-          font-size: 13px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          transition: background 0.2s ease;
-        }
-        .footer-dropdown div:hover {
-          background: #ff1a75;
-        }
-        .footer-dropdown div:first-child {
-          justify-content: center;
-          font-weight: bold;
-          border-bottom: 1px solid #ff1a75;
-          margin-bottom: 6px;
-        }
-        @media (min-width: 768px) {
-          .floating-footer {
-            display: none !important;
-          }
-        }
-      `}</style>
+    // ...component remains the same...
+
+<style>{`
+  .floating-footer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0a0a0a;
+    border: 2px solid #ff1a75;
+    border-radius: 20px;
+    /* Removed glow effect */
+    box-shadow: none;
+    display: flex;
+    gap: 24px;
+    padding: 12px 20px;
+    z-index: 99999;
+    font-family: 'Audiowide', cursive;
+  }
+  .footer-btn {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-size: 12px;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  .footer-btn i {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  .footer-btn:hover {
+    transform: scale(1.15);
+  }
+  .footer-dropdown {
+    position: absolute;
+    bottom: 45px;
+    background: #111;
+    border: 1px solid #ff1a75;
+    border-radius: 10px;
+    /* Removed glow effect */
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    min-width: 130px;
+    z-index: 100000;
+  }
+  .footer-dropdown div {
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+  }
+  .footer-dropdown div:hover {
+    background: #ff1a75;
+  }
+  .footer-dropdown div:first-child {
+    justify-content: center;
+    font-weight: bold;
+    border-bottom: 1px solid #ff1a75;
+    margin-bottom: 6px;
+  }
+  @media (min-width: 768px) {
+    .floating-footer {
+      display: none !important;
+    }
+  }
+`}</style>
+
     </>
   );
 };
