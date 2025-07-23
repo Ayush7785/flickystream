@@ -102,7 +102,7 @@ const FloatingMobileFooter: React.FC = () => {
         ))}
       </div>
 
-    // ...component remains the same...
+  
 
 <style>{`
   .floating-footer {
